@@ -5,9 +5,7 @@ public class Route {
 	private String agencyId; // TODO to remove
 	private String shortName;
 	private String longName;
-	private String desc;
-	private String type;
-	private String url;
+	private int type;
 	private String color;
 	private String textColor;
 	
@@ -34,24 +32,6 @@ public class Route {
 	}
 	public void setLongName(String longName) {
 		this.longName = longName;
-	}
-	public String getDesc() {
-		return desc;
-	}
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
 	}
 	public String getColor() {
 		return color;

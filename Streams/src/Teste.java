@@ -9,18 +9,13 @@ public class Teste {
 		
 		
 		try {
-			Scanner scanner = new Scanner(new FileReader("data/routes.txt"));
-			String linha = scanner.nextLine();
+		
+			CSVFileReader csvArquivo = new CSVFileReader("data/routes.txt");
 			
-			while (scanner.hasNext()){
-				linha = scanner.nextLine();
-				String [] lista = linha.split(",");
-//				System.out.println(lista[0]);
-				Route route = new Route();
-				route.setId(lista[0]);
-				route.setAgencyId(lista[1]);
-				System.out.println("Agencia:" + route.getAgencyId());				
-			}
+			while(csvArquivo.hasNext()){
+				csvArquivo.next();
+			}	
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
