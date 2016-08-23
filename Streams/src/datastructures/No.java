@@ -1,32 +1,32 @@
 package datastructures;
 
-public class No {
+public class No<T> {
 
-	private No anterior;
-	private No proximo;
-	private int valor;
+	private No<T> anterior;
+	private No<T> proximo;
+	private T valor;
 
-	public No getAnterior() {
+	public No(T valor) {
+		this.valor = valor;
+	}
+
+	public No<T> getAnterior() {
 		return anterior;
 	}
 
-	public void setAnterior(No anterior) {
+	public void setAnterior(No<T> anterior) {
 		this.anterior = anterior;
 	}
 
-	public No getProximo() {
+	public No<T> getProximo() {
 		return proximo;
 	}
 
-	public void setProximo(No proximo) {
+	public void setProximo(No<T> proximo) {
 		this.proximo = proximo;
 	}
 
-	public int getValor() {
+	public T getValor() {
 		return valor;
-	}
-
-	public void setValor(int valor) {
-		this.valor = valor;
 	}
 }

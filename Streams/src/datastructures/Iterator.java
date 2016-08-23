@@ -1,7 +1,9 @@
 package datastructures;
 
-public interface Iterator
-	extends java.util.Iterator<Integer>
+public interface Iterator<T>
+	extends java.util.Iterator<T>
 {
-	public void append(int valor);
+	public void append(T valor);
+	
+	public void insert(T valor);
 }
