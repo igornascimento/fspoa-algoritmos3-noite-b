@@ -1,4 +1,8 @@
 
+interface Probing {
+	int probe(int i, int j);
+}
+
 class ChaveValor {
 	public final String key;
 	public final String value;
@@ -11,14 +15,14 @@ class ChaveValor {
 public class HashTable {
 	
 	private ChaveValor[] tabela = new ChaveValor[20];
+	private Probing probe;
 
 	public static void main(String[] args) {
-		(new HashTable()).run();
-	}
+		// linear: (i + j) % B
+		//HashTable hashTable = new HashTable((i,j)->(i+j));
+		// quadratico: (i + 2**j) % B
+		HashTable hashTable = new HashTable((i,j)->(i+(1<<j)));
 
-	private void run() {
-
-		HashTable hashTable = new HashTable();
 		hashTable.put("123","Rafael");
 		hashTable.put("124","Ivonei");
 		hashTable.put("125","Lucia");
@@ -34,14 +38,17 @@ public class HashTable {
 		}
 	}
 
+	public HashTable(Probing probe) {
+		this.probe = probe;
+	}
+	
 	private String get(String key)
 	{
 		int hk = hash(key);
 		int i = hk % tabela.length;
-		// probing linear
+		// probing quadratico
 		for (int j = 0; j < tabela.length; j++) {
-			// linear: (i + j) % B
-			int indice = (i + j) % tabela.length;
+			int indice = probe.probe(i, j) % tabela.length;
 			if (tabela[indice] == null) {
 				throw new KeyNotFoundException(key);
 			} else {
@@ -60,8 +67,7 @@ public class HashTable {
 		int i = hk % tabela.length;
 		// probing linear
 		for (int j = 0; j < tabela.length; j++) {
-			// linear: (i + j) % B
-			int indice = (i + j) % tabela.length;
+			int indice = probe.probe(i, j) % tabela.length;
 			System.out.print("Tentando: " + indice + "... ");
 			if (tabela[indice] == null) {
 				System.out.println("ok.");
